@@ -1,0 +1,5 @@
+npx create-react-app react_dir
+npm start
+
+npm i sass
+npm i axios
