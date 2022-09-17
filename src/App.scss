@@ -106,6 +106,7 @@ button {
     }
   }
 }
+
 .lds-dual-ring {
   display: inline-block;
   width: 80px;
@@ -130,6 +131,7 @@ button {
     transform: rotate(360deg);
   }
 }
+
 button.red {
   &:after {
     background-color: $color2;

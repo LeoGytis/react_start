@@ -1,4 +1,5 @@
 // import rand from '../../Functions/rand';
+// https://in3.dev/knygos/
 
 function Books({ books }) {
 
@@ -8,7 +9,7 @@ function Books({ books }) {
     return (
         <>
             {
-                books.map(b => <div key={b.id}>{b.title}<img src={b.img} alt="bla bla"></img></div>)
+                books.map(b => <div key={b.id}>{b.title}<img src={b.img} alt="book image"></img></div>)
             }
         </>
     );
