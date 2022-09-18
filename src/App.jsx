@@ -1,39 +1,32 @@
 import logo from "./logo.svg";
 import "./App.scss";
-import { useEffect, useState } from "react";
-import Books from "./Components/011/Books";
-import axios from "axios";
+import { useState, useRef } from "react";
+
 
 function App() {
-    const [count, setCount] = useState(1);
-    const [books, setBooks] = useState([]);
-    const [users, setUsers] = useState([]);
+  
+    const [count, setCount] = useState(0);
 
-    useEffect(() => {
-        console.log("YES"); // READY
-        axios.get("https://in3.dev/knygos/").then((res) => {
-            console.log(res.data);
-            setBooks(res.data);
-        });
-    }, []); // antras argumentas yra masyvas ir useEffect pasileidzia kai pasikeicia masyvas
+    const mano = useRef(0);             // plain js kintamasis kuris neitakoja nieko kito
+    const panda = useRef();
 
-    useEffect(() => {
-        axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
-            setUsers(res.data);
-        });
-    }, []);
+    const add = () => {
+        setCount(c => c + 1)
+        mano.current = mano.current + 3;
+        console.log(mano.current);
+        // const p = document.querySelector('#panda');
+
+        const p = panda.current;
+        console.log(p.dataset.panda);
+    };
 
     return (
         <div className="App">
             <header className="App-header">
-                <h1>{count}</h1>
-                <button onClick={() => setCount((c) => c + 1)}>
-                    Starting counting
-                </button>
-                <Books books={books}></Books>
-                {users.map((u) => (
-                    <div key={u.id}>{u.name}</div>
-                ))}
+                <h1>useRef LocalStorage</h1>
+                <h2>Counting {count}</h2>
+                <button onClick={add}>Add +1</button>
+                <div ref={panda} id="panda" data-panda="miega"></div>
             </header>
         </div>
     );
