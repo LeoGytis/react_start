@@ -4,37 +4,50 @@ import { useState, useRef, useEffect } from "react";
 import randomNumber from "./Functions/randomNumber";
 
 function App() {
-    const [kv, setKv] = useState([]);
-    const randomNr = randomNumber(1, 5);
+    const [kv, setKv] = useState(null);
 
-    let myNumber = useRef(0);
+    // First load
+    useEffect(() => {
+        setKv(JSON.parse(localStorage.getItem("kv")));
+    }, []);
+
+    // Saves changes
+    useEffect(() => {
+        if (null === kv) {
+            return;
+        }
+        localStorage.setItem("kv", JSON.stringify(kv));
+    }, [kv]);
+
+    // let myNumber = useRef(0);
+
+    // setKv((k) => [...parseInt(localStorage.getItem("count") ?? 0)]);
 
     const addKv = () => {
+        const randomNr = randomNumber(1, 5);
+        const squareCount = [];
         console.log(randomNr);
 
-        myNumber.current = myNumber.current + randomNr;
-        console.log(myNumber.current);
-
         for (let i = 0; i < randomNr; i++) {
-            setKv((k) => [...k, 1]);
+            squareCount.push("^o^");
         }
-    };
 
-    const undoKv = () => {
-        setKv((k) => k.slice(myNumber.current));
+        // setKv((k) => [...k, ...squareCount]);
+        setKv(k => null === k ? [...squareCount] : [...k, ...squareCount]);
     };
 
     return (
         <div className="App">
             <header className="App-header">
                 <button onClick={addKv}>Add [ ]</button>
-                <button onClick={undoKv}>Undo [ ]</button>
                 <div className="kvc">
-                    {kv.map((c, i) => (
-                        <div className="kv" key={i}>
-                            {i}
-                        </div>
-                    ))}
+                    {kv
+                        ? kv.map((k, i) => (
+                              <div key={i} className="kv">
+                                  {k}
+                              </div>
+                          ))
+                        : null}
                 </div>
             </header>
         </div>
