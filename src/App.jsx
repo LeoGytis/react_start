@@ -36,10 +36,15 @@ function App() {
         setKv(k => null === k ? [...squareCount] : [...k, ...squareCount]);
     };
 
+    const cleanAll = () => {
+        setKv([]);
+    }
+
     return (
         <div className="App">
             <header className="App-header">
                 <button onClick={addKv}>Add [ ]</button>
+                <button onClick={cleanAll}>Clean all</button>
                 <div className="kvc">
                     {kv
                         ? kv.map((k, i) => (
