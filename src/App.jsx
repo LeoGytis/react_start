@@ -3,9 +3,14 @@ import "./App.scss";
 import { useState, useRef, useEffect } from "react";
 import randomNumber from "./Functions/randomNumber";
 
+const catsArray = ["Mulkis", "Kakius", "Pilkius", "Balčius"];
+const dogsArray = ["Sniego", "Dingo", "Atsirado", "Pifas", "Bobikas"];
+
 function App() {
     const [kv, setKv] = useState(null);
     const istorija = useRef([]);
+    const [cats, setCats] = useState([]);
+    const [animals, setAnimals] = useState([]);
 
     // First load
     useEffect(() => {
@@ -54,12 +59,28 @@ function App() {
         }
     };
 
+    const showCats = () => {
+        setAnimals([...animals, ...catsArray]);
+    };
+
+    const showDogs = () => {
+        setAnimals([...dogsArray]);
+    };
+
+    const clearAnimals = () => {
+        setAnimals([]);
+    };
+
     return (
         <div className="App">
             <header className="App-header">
+                <h1>013 Lesson - Praktimumas</h1>
                 <button onClick={addKv}>Add [ ]</button>
                 <button onClick={cleanAll}>Clean all</button>
                 <button onClick={undo}>Undo</button>
+                <button onClick={showCats}>Show Cats</button>
+                <button onClick={showDogs}>Show Dogs</button>
+                <button onClick={clearAnimals}>Clear Animal List</button>
                 <div className="kvc">
                     {kv
                         ? kv.map((k, i) => (
@@ -68,6 +89,11 @@ function App() {
                               </div>
                           ))
                         : null}
+                </div>
+                <div>
+                    {animals.map((a, i) => (
+                        <div key={i}>{a}</div>
+                    ))}
                 </div>
             </header>
         </div>
