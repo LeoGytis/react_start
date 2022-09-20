@@ -1,74 +1,87 @@
-import logo from "./logo.svg";
 import "./App.scss";
-import { useState, useRef, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
-import randomColor from "./Functions/randomColor";
+import { useState } from "react";
 
 function App() {
-    const [sheeps, setSheeps] = useState([]);
+    const [text, setText] = useState("");
+    const [select, setSelect] = useState("three");
+    const [cb, setCb] = useState({ a: false, b: false, c: true, d: true });
+    const [radio, setRadio] = useState('a');
 
-    const addSheep = () => {
-        const newSheep = {
-            id: uuidv4(),
-            color: randomColor(),
-            where: "ganykla",
-        };
-        setSheeps([...sheeps, newSheep]);
+    const [color, setColor] = useState('pink');
+
+    const inputText = (e) => {
+        setText(e.target.value);
     };
 
-    const goSheep = (id) => {
-
-        // setSheeps(a => {
-        //     const avis = a.filter(av => av.id === id)[0];   //[0] grazina masyvo pirma elementa
-        //     avis.where = 'kirpykla';
-        //     const kitos = a.filter(av => av.id !== id);
-        //     return [...kitos, avis];
-        // });
-
-        setSheeps((a) =>
-            a.map((avis) =>
-                avis.id === id ? { ...avis, where: "kirpykla" } : avis
-            )
-        );
+    const cbClick = (value) => {
+        setCb((checkBox) => ({ ...checkBox, [value]: !checkBox[value] }));
     };
-    const goBackSheep = (id) => {
-        setSheeps((a) =>
-        a.map((avis) =>
-            avis.id === id ? { ...avis, where: "ganykla" } : avis
-        )
-    );
-    };
+
+    const inputColor = e => {
+        setColor(e.target.value);
+    }
 
     return (
         <div className="App">
-            <header className="App-header">
-                <h1>Sheeps!</h1>
-                <div className="kvc">
-                    {sheeps
-                        .filter((a) => a.where === "kirpykla")
-                        .map((sheep, i) => (
-                            <div
-                                onClick={() => goBackSheep(sheep.id)}
-                                key={sheep.id}
-                                className="kv"
-                                style={{ background: sheep.color }}
-                            ></div>
-                        ))}
-                </div>
-
-                <button onClick={addSheep}>New sheep!</button>
-                <div className="kvc">
-                    {sheeps
-                        .filter((a) => a.where === "ganykla")
-                        .map((sheep, i) => (
-                            <div
-                                onClick={() => goSheep(sheep.id)}
-                                key={sheep.id}
-                                className="kv"
-                                style={{ background: sheep.color }}
-                            ></div>
-                        ))}
-                </div>
+            <header className="App-header" style={{background:color}}>
+                <fieldset>
+                    <legend>Text</legend>
+                    <input
+                        type="text"
+                        onChange={inputText}
+                        value={text}
+                    ></input>
+                </fieldset>
+                <fieldset>
+                    <legend>Select</legend>
+                    <select
+                        value={select}
+                        onChange={(e) => setSelect(e.target.value)}
+                    >
+                        <option value="one">One</option>
+                        <option value="two">Two</option>
+                        <option value="three">Three</option>
+                        <option value="four">Four</option>
+                        <option value="five">Five</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <legend>Checkbox</legend>A
+                    <input
+                        type="checkbox"
+                        onChange={() => cbClick("a")}
+                        checked={cb.a}
+                    ></input>
+                    B
+                    <input
+                        type="checkbox"
+                        onChange={() => cbClick("b")}
+                        checked={cb.b}
+                    ></input>
+                    C
+                    <input
+                        type="checkbox"
+                        onChange={() => cbClick("c")}
+                        checked={cb.c}
+                    ></input>
+                    D
+                    <input
+                        type="checkbox"
+                        onChange={() => cbClick("d")}
+                        checked={cb.d}
+                    ></input>
+                </fieldset>
+                <fieldset>
+                    <legend>Radio buttons</legend>
+                    A<input type="radio" name="r" value="a" onChange={e => setRadio(e.target.value)} checked={radio === 'a'}></input>
+                    B<input type="radio" name="r" value="b" onChange={e => setRadio(e.target.value)} checked={radio === 'b'}></input>
+                    C<input type="radio" name="r" value="c" onChange={e => setRadio(e.target.value)} checked={radio === 'c'}></input>
+                    D<input type="radio" name="r" value="d" onChange={e => setRadio(e.target.value)} checked={radio === 'd'}></input>
+                </fieldset>
+                <fieldset>
+                    <legend>T-COLOR</legend>
+                    <input type="color" onChange={inputColor} value={color}></input>
+                </fieldset>
             </header>
         </div>
     );
