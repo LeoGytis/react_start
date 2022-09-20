@@ -1,99 +1,73 @@
 import logo from "./logo.svg";
 import "./App.scss";
 import { useState, useRef, useEffect } from "react";
-import randomNumber from "./Functions/randomNumber";
-
-const catsArray = ["Mulkis", "Kakius", "Pilkius", "Balčius"];
-const dogsArray = ["Sniego", "Dingo", "Atsirado", "Pifas", "Bobikas"];
+import { v4 as uuidv4 } from "uuid";
+import randomColor from "./Functions/randomColor";
 
 function App() {
-    const [kv, setKv] = useState(null);
-    const istorija = useRef([]);
-    const [cats, setCats] = useState([]);
-    const [animals, setAnimals] = useState([]);
+    const [sheeps, setSheeps] = useState([]);
 
-    // First load
-    useEffect(() => {
-        setKv(JSON.parse(localStorage.getItem("kv")));
-    }, []);
-
-    // Saves changes
-    useEffect(() => {
-        if (null === kv) {
-            return;
-        }
-        localStorage.setItem("kv", JSON.stringify(kv));
-        istorija.current.unshift(kv);
-    }, [kv]);
-
-    const addKv = () => {
-        const randomNr = randomNumber(1, 5);
-        const squareCount = [];
-        console.log(randomNr);
-
-        for (let i = 0; i < randomNr; i++) {
-            squareCount.push("^o^");
-        }
-
-        // setKv((k) => [...k, ...squareCount]);
-        setKv((k) => (null === k ? [...squareCount] : [...k, ...squareCount]));
+    const addSheep = () => {
+        const newSheep = {
+            id: uuidv4(),
+            color: randomColor(),
+            where: "ganykla",
+        };
+        setSheeps([...sheeps, newSheep]);
     };
 
-    const cleanAll = () => {
-        setKv([]);
-    };
+    const goSheep = (id) => {
 
-    const undo = () => {
-        let senas = istorija.current.shift();
-        if (!senas) {
-            setKv([]);
-        } else if (senas.length === kv.length) {
-            senas = istorija.current.shift();
-            if (!senas) {
-                setKv([]);
-            } else {
-                setKv(senas);
-            }
-        } else {
-            setKv(senas);
-        }
-    };
+        // setSheeps(a => {
+        //     const avis = a.filter(av => av.id === id)[0];   //[0] grazina masyvo pirma elementa
+        //     avis.where = 'kirpykla';
+        //     const kitos = a.filter(av => av.id !== id);
+        //     return [...kitos, avis];
+        // });
 
-    const showCats = () => {
-        setAnimals([...animals, ...catsArray]);
+        setSheeps((a) =>
+            a.map((avis) =>
+                avis.id === id ? { ...avis, where: "kirpykla" } : avis
+            )
+        );
     };
-
-    const showDogs = () => {
-        setAnimals([...dogsArray]);
-    };
-
-    const clearAnimals = () => {
-        setAnimals([]);
+    const goBackSheep = (id) => {
+        setSheeps((a) =>
+        a.map((avis) =>
+            avis.id === id ? { ...avis, where: "ganykla" } : avis
+        )
+    );
     };
 
     return (
         <div className="App">
             <header className="App-header">
-                <h1>013 Lesson - Praktimumas</h1>
-                <button onClick={addKv}>Add [ ]</button>
-                <button onClick={cleanAll}>Clean all</button>
-                <button onClick={undo}>Undo</button>
-                <button onClick={showCats}>Show Cats</button>
-                <button onClick={showDogs}>Show Dogs</button>
-                <button onClick={clearAnimals}>Clear Animal List</button>
+                <h1>Sheeps!</h1>
                 <div className="kvc">
-                    {kv
-                        ? kv.map((k, i) => (
-                              <div key={i} className="kv">
-                                  {i}
-                              </div>
-                          ))
-                        : null}
+                    {sheeps
+                        .filter((a) => a.where === "kirpykla")
+                        .map((sheep, i) => (
+                            <div
+                                onClick={() => goBackSheep(sheep.id)}
+                                key={sheep.id}
+                                className="kv"
+                                style={{ background: sheep.color }}
+                            ></div>
+                        ))}
                 </div>
-                <div>
-                    {animals.map((a, i) => (
-                        <div key={i}>{a}</div>
-                    ))}
+
+                <button onClick={addSheep}>New sheep!</button>
+                <div className="kvc">
+                    {sheeps
+                        .filter((a) => a.where === "ganykla")
+                        .map((sheep, i) => (
+                            <div
+                                onClick={() => goSheep(sheep.id)}
+                                key={sheep.id}
+                                className="kv"
+                                style={{ background: sheep.color }}
+                            ></div>
+                        ))}
                 </div>
             </header>
         </div>

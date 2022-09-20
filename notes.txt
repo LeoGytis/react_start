@@ -6,3 +6,7 @@ npm i axios
 
 012 Lesson - useRef, localStorage
 013 Lesson - Praktikumas
+014 Lesson - Avys
+
+npm i uuid
+import { v4 as uuidv4 } from 'uuid';
