@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 function Create() {
-    const [name, setName] = useState("");
-    const [type, setType] = useState("1");
-    const [place, setPlace] = useState("");
+    const [name, setName] = useState('');
+    const [type, setType] = useState('1');
+    const [place, setPlace] = useState('');
 
     return (
         <div className="col-4">
