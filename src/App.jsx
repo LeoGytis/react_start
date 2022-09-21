@@ -1,6 +1,7 @@
 import "./App.scss";
 import { useEffect, useState } from "react";
 import Create from "./Components/crud/Create";
+import { create } from './Functions/localStorage';
 
 function App() {
     const [createData, setCreateData] = useState(null);
@@ -10,7 +11,7 @@ function App() {
         if (null === createData) {
             return;
         }
-        Create(createData);
+        create(createData);
     }, [createData]);
 
     return (
@@ -18,7 +19,7 @@ function App() {
             <header className="App-header">
                 <div className="container text-black">
                     <div className="row">
-                        <Create setCreateData={setCreateData} />
+                        <Create setCreateData={setCreateData}/>
                     </div>
                 </div>
             </header>

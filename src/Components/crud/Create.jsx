@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Create({ setCreateData }) {
+function Create({setCreateData}) {
     const [name, setName] = useState("");
     const [type, setType] = useState("1");
     const [place, setPlace] = useState("");
@@ -8,9 +8,9 @@ function Create({ setCreateData }) {
     const handleCreate = () => {
         const data = { name, type, place };
         setCreateData(data);
-        setName('');
-        setType('1');
-        setPlace('');
+        setName("");
+        setType("1");
+        setPlace("");
     };
 
     return (
@@ -38,7 +38,7 @@ function Create({ setCreateData }) {
                             <option value="2">Written</option>
                             <option value="3">Spoken</option>
                         </select>
-                    </div> 
+                    </div>
                     <div className="form-group">
                         <label>Place</label>
                         <input
