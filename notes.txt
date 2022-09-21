@@ -10,3 +10,7 @@ npm i axios
 
 npm i uuid
 import { v4 as uuidv4 } from 'uuid';
+
+015 lesson 
+npm i bootstrap
+index.js --->> import 'bootstrap/dist/css/bootstrap.css';
