@@ -10,7 +10,7 @@ function App() {
         if (null === createData) {
             return;
         }
-        // --- to localStorage ---
+        Create(createData);
     }, [createData]);
 
     return (
@@ -18,7 +18,7 @@ function App() {
             <header className="App-header">
                 <div className="container text-black">
                     <div className="row">
-                        <Create />
+                        <Create setCreateData={setCreateData} />
                     </div>
                 </div>
             </header>

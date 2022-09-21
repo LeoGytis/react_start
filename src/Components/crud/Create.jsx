@@ -1,9 +1,17 @@
 import { useState } from "react";
 
-function Create() {
-    const [name, setName] = useState('');
-    const [type, setType] = useState('1');
-    const [place, setPlace] = useState('');
+function Create({ setCreateData }) {
+    const [name, setName] = useState("");
+    const [type, setType] = useState("1");
+    const [place, setPlace] = useState("");
+
+    const handleCreate = () => {
+        const data = { name, type, place };
+        setCreateData(data);
+        setName('');
+        setType('1');
+        setPlace('');
+    };
 
     return (
         <div className="col-4">
@@ -30,7 +38,7 @@ function Create() {
                             <option value="2">Written</option>
                             <option value="3">Spoken</option>
                         </select>
-                    </div>
+                    </div> 
                     <div className="form-group">
                         <label>Place</label>
                         <input
@@ -43,6 +51,7 @@ function Create() {
                     <button
                         type="button"
                         className="btn btn-outline-primary mt-3"
+                        onClick={handleCreate}
                     >
                         Create
                     </button>
