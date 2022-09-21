@@ -1,7 +1,8 @@
 import "./App.scss";
 import { useEffect, useState } from "react";
 import Create from "./Components/crud/Create";
-import { create } from './Functions/localStorage';
+import List from "./Components/crud/List";
+import { create } from "./Functions/localStorage";
 
 function App() {
     const [createData, setCreateData] = useState(null);
@@ -19,7 +20,8 @@ function App() {
             <header className="App-header">
                 <div className="container text-black">
                     <div className="row">
-                        <Create setCreateData={setCreateData}/>
+                        <Create setCreateDataVaVa={setCreateData} />
+                        <List />
                     </div>
                 </div>
             </header>
