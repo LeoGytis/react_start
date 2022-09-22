@@ -11,11 +11,11 @@ npm i axios
 npm i uuid
 import { v4 as uuidv4 } from 'uuid';
 
-015 lesson 
+015 lesson - CRUD begins
 npm i bootstrap
 index.js --->> import 'bootstrap/dist/css/bootstrap.css';
 
-016 lesson
+016 lesson - CRUD
 npm install bootstrap jquery 
 import 'bootstrap/dist/js/bootstrap.js';
-<div className="modal" style={{"display": "block"}}>
+<div className="modal" style={{"display": "block"}}>  // for modal to pop up

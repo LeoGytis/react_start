@@ -37,17 +37,10 @@ function Edit({ modalData, setModalData, setEditData }) {
                             data-bs-dismiss="modal"
                             aria-label="Close"
                         ></button>
-                        {/* <button
-                            type="button"
-                            className="close"
-                            onClick={() => setModalData(null)}
-                        >
-                            <span>&times;</span>
-                        </button> */}
                     </div>
-                    <div className="modal-body">
-                        <div className="form-group">
-                            <label className="form-label fs-6">Type</label>
+                    <div className="modal-body text-start ms-5 me-5">
+                        <div className="form-group ms-5 me-5">
+                            <label className="form-label fs-6 text-right">Name</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -55,7 +48,7 @@ function Edit({ modalData, setModalData, setEditData }) {
                                 value={name}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group ms-5 me-5">
                             <label className="form-label fs-6">Type</label>
                             <select
                                 className="form-select"
@@ -67,7 +60,7 @@ function Edit({ modalData, setModalData, setEditData }) {
                                 <option value="3">Spoken</option>
                             </select>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group ms-5 me-5">
                             <label className="form-label fs-6">Place</label>
                             <input
                                 type="text"
