@@ -1,7 +1,6 @@
-import { useState } from "react";
 import Exams from "./Exams";
 
-function List({ examsList, setDeleteData }) {
+function List({ examsList, setDeleteData, setModalData }) {
     return (
         <div className="col-8">
             <div className="card">
@@ -9,7 +8,7 @@ function List({ examsList, setDeleteData }) {
                 <div className="card-body text-start">
                     <ul className="list-group">
                     {
-                    examsList ? examsList.map(ex => <Exams key={ex.id} exam={ex} setDeleteData={setDeleteData}></Exams>) : null
+                    examsList ? examsList.map(ex => <Exams key={ex.id} exam={ex} setDeleteData={setDeleteData} setModalData={setModalData}></Exams>) : null
                     }
                     </ul>
                 </div>

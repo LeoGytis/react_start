@@ -1,11 +1,11 @@
 function Exams({ exam, setDeleteData, setModalData }) {
-
     const handleDelete = () => {
         setDeleteData(exam);
     };
 
     const handleEdit = () => {
         setModalData(exam);
+        console.log("Kazas");
     };
 
     return (
