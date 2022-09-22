@@ -1,6 +1,7 @@
 body {
     font-family: 'Oswald', sans-serif;
 }
+
 .list-group-item {
     .item {
         display: flex;
@@ -27,6 +28,6 @@ body {
 }
 
 .modal {
-    display: block;
+    display: block;   // implemented this one straight to component
     background-color: rgba(0, 0, 0, 0.5);
 }

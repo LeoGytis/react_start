@@ -18,3 +18,4 @@ index.js --->> import 'bootstrap/dist/css/bootstrap.css';
 016 lesson
 npm install bootstrap jquery 
 import 'bootstrap/dist/js/bootstrap.js';
+<div className="modal" style={{"display": "block"}}>

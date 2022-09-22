@@ -25,14 +25,11 @@ function Edit({ modalData, setModalData, setEditData }) {
     }
 
     return (
-
-        <div className="modal">
-        <div>PALA</div>
-
+        <div className="modal" style={{ display: "block" }}>
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">Modal title</h5>
+                        <h5 className="modal-title">Modal pavadinimas</h5>
                         <button
                             type="button"
                             className="btn-close"

@@ -49,13 +49,16 @@ function App() {
 
     return (
         <>
+
             <div className="App">
+
                 <header className="App-header">
                     <div className="container text-black">
                         <div className="row">
-                            <Edit modalData={modalData}></Edit>
 
                             <Create createData={setCreateData} />
+        <Edit modalData={modalData}></Edit>
+
                             <List
                                 examsList={exams}
                                 setDeleteData={setDeleteData}
