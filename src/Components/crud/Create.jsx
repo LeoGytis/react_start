@@ -16,7 +16,7 @@ function Create({createData}) {
     return (
         <div className="col-4">
             <div className="card">
-                <div className="card-header">Create new Ex</div>
+                <div className="card-header">Create new Exam</div>
                 <div className="card-body text-start">
                     <div className="form-group">
                         <label>Name</label>
