@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Exams from "./Exams";
 
-function List({ exes }) {
+function List({ examsList }) {
     return (
         <div className="col-8">
             <div className="card">
@@ -9,7 +9,7 @@ function List({ exes }) {
                 <div className="card-body text-start">
                     <ul className="list-group">
                     {
-                    exes ? exes.map(ex => <Exams key={ex.id} ex={ex}></Exams>) : null
+                    examsList ? examsList.map(ex => <Exams key={ex.id} exam={ex}></Exams>) : null
                     }
                     </ul>
                 </div>

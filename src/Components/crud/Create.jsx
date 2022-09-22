@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-function Create({setCreateData}) {
+function Create({createData}) {
     const [name, setName] = useState("");
     const [type, setType] = useState("1");
     const [place, setPlace] = useState("");
 
     const handleCreate = () => {
         const data = { name, type, place };
-        setCreateData(data);
+        createData(data);
         setName("");
         setType("1");
         setPlace("");
