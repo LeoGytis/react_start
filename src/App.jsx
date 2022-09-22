@@ -49,15 +49,11 @@ function App() {
 
     return (
         <>
-
             <div className="App">
-
                 <header className="App-header">
                     <div className="container text-black">
                         <div className="row">
-
                             <Create createData={setCreateData} />
-        <Edit modalData={modalData}></Edit>
 
                             <List
                                 examsList={exams}
@@ -65,6 +61,10 @@ function App() {
                                 setModalData={setModalData}
                             />
                         </div>
+                        <Edit
+                            modalData={modalData}
+                            setModalData={setModalData}
+                        ></Edit>
                     </div>
                 </header>
             </div>
