@@ -1,5 +1,5 @@
-function Exams() {
-    return <li className="list-group-item">An item bravo</li>;
+function Exams({ex}) {
+    return <li className="list-group-item">Name: {ex.name}</li>;
 }
 
 export default Exams;
