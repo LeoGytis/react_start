@@ -3,7 +3,7 @@ import "./crud.scss";
 import { useEffect, useState } from "react";
 import Create from "./Components/crud/Create";
 import List from "./Components/crud/List";
-import { create, read, remove } from "./Functions/localStorage";
+import { create, read, remove, edit } from "./Functions/localStorage";
 
 function App() {
     const [lastUpdate, setLastUpdate] = useState(Date.now());

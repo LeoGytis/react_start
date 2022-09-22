@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Create({createData}) {
+function Create({ createData }) {
     const [name, setName] = useState("");
     const [type, setType] = useState("1");
     const [place, setPlace] = useState("");
@@ -19,7 +19,7 @@ function Create({createData}) {
                 <div className="card-header">Create new Exam</div>
                 <div className="card-body text-start">
                     <div className="form-group">
-                        <label>Name</label>
+                        <label className="form-label fs-6">Name</label>
                         <input
                             type="text"
                             className="form-control"
@@ -28,7 +28,7 @@ function Create({createData}) {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Type</label>
+                        <label className="form-label fs-6">Type</label>
                         <select
                             className="form-select"
                             onChange={(e) => setType(e.target.value)}
@@ -40,7 +40,7 @@ function Create({createData}) {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label>Place</label>
+                        <label className="form-label fs-6">Place</label>
                         <input
                             type="text"
                             className="form-control"
@@ -48,13 +48,15 @@ function Create({createData}) {
                             value={place}
                         />
                     </div>
-                    <button
-                        type="button"
-                        className="btn btn-outline-primary mt-3"
-                        onClick={handleCreate}
-                    >
-                        Create
-                    </button>
+                    <div className="d-flex justify-content-center">
+                        <button
+                            type="button"
+                            className="btn btn-outline-primary mt-3"
+                            onClick={handleCreate}
+                        >
+                            Create
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
