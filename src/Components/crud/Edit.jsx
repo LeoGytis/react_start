@@ -31,30 +31,34 @@ function Edit({ modalData, setModalData, setEditData }) {
                     <div className="modal-header">
                         <h2 className="modal-title">Edit your exam</h2>
                         <button
+                            onClick={() => setModalData(null)}
+                            type="button"
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                        {/* <button
                             type="button"
                             className="close"
                             onClick={() => setModalData(null)}
                         >
                             <span>&times;</span>
-                        </button>
+                        </button> */}
                     </div>
                     <div className="modal-body">
                         <div className="form-group">
-                            <label>Name</label>
+                            <label className="form-label fs-6">Type</label>
                             <input
                                 type="text"
                                 className="form-control"
                                 onChange={(e) => setName(e.target.value)}
                                 value={name}
                             />
-                            <small className="form-text text-muted">
-                                Enter Ex name here.
-                            </small>
                         </div>
                         <div className="form-group">
-                            <label>Type</label>
+                            <label className="form-label fs-6">Type</label>
                             <select
-                                className="form-control"
+                                className="form-select"
                                 onChange={(e) => setType(e.target.value)}
                                 value={type}
                             >
@@ -62,31 +66,18 @@ function Edit({ modalData, setModalData, setEditData }) {
                                 <option value="2">Written</option>
                                 <option value="3">Spoken</option>
                             </select>
-                            <small className="form-text text-muted">
-                                Select Ex type here.
-                            </small>
                         </div>
                         <div className="form-group">
-                            <label>Place</label>
+                            <label className="form-label fs-6">Place</label>
                             <input
                                 type="text"
                                 className="form-control"
                                 onChange={(e) => setPlace(e.target.value)}
                                 value={place}
                             />
-                            <small className="form-text text-muted">
-                                Enter Ex place here.
-                            </small>
                         </div>
                     </div>
-                    <div className="modal-footer">
-                        <button
-                            type="button"
-                            className="btn btn-outline-secondary"
-                            onClick={() => setModalData(null)}
-                        >
-                            Close
-                        </button>
+                    <div className="modal-footer d-flex justify-content-center">
                         <button
                             type="button"
                             className="btn btn-outline-primary"

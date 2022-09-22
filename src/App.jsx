@@ -11,7 +11,7 @@ function App() {
     const [exams, setExams] = useState(null);
     const [createData, setCreateData] = useState(null);
     const [deleteData, setDeleteData] = useState(null);
-    // const [editData, setEditData] = useState(null);
+    const [editData, setEditData] = useState(null);
     const [modalData, setModalData] = useState(null);
 
     // --------- Read ---------
@@ -38,14 +38,14 @@ function App() {
     }, [deleteData]);
 
     // --------- Edit ---------
-    // useEffect(() => {
-    //     if (null === editData) {
-    //         return;
-    //     }
-    //     edit(editData);
-    //     setLastUpdate(Date.now());
+    useEffect(() => {
+        if (null === editData) {
+            return;
+        }
+        edit(editData);
+        setLastUpdate(Date.now());
 
-    // }, [editData]);
+    }, [editData]);
 
     return (
         <>
@@ -64,6 +64,7 @@ function App() {
                         <Edit
                             modalData={modalData}
                             setModalData={setModalData}
+                            setEditData={setEditData}
                         ></Edit>
                     </div>
                 </header>
