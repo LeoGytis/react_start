@@ -11,6 +11,7 @@ function App() {
     const [createData, setCreateData] = useState(null);
     const [deleteData, setDeleteData] = useState(null);
     const [editData, setEditData] = useState(null);
+    const [modalData, setModalData] = useState(null);
 
     // --------- Read ---------
     useEffect(() => {
@@ -42,7 +43,7 @@ function App() {
                 <div className="container text-black">
                     <div className="row">
                         <Create createData={setCreateData} />
-                        <List examsList={exams} setDeleteData={setDeleteData} />
+                        <List examsList={exams} setDeleteData={setDeleteData} setModalData={setModalData}/>
                     </div>
                 </div>
             </header>
