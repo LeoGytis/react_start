@@ -8,11 +8,11 @@ let b = new String('labas');
 console.log(b);
 
 
-// String.prototype.tail = function() {
-//     return this.valueOf() + 'o-----------';
-// }
+String.prototype.tail = function() {
+    return this.valueOf() + 'o-----------';
+}
 
-// console.log(a);
+console.log(a);
 
 class Cat {
 
