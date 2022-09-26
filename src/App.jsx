@@ -1,5 +1,5 @@
 import "./App.scss";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 function App() {
     return (
