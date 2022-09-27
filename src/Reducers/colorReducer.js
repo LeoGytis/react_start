@@ -7,6 +7,12 @@ function colorReducer(state, action) {
         case "go_pink":
             newState = "pink";
             break;
+        case "go_yellow":
+            newState = "yellow";
+            break;
+        case "change_color":
+            newState = state === "yellow" ? "pink" : "yellow";
+            break;
         default:
             newState = state;
     }
