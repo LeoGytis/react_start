@@ -1,15 +1,16 @@
 import "./App.scss";
 import "./crud.scss";
 
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
 import colorReducer from "./Reducers/colorReducer";
 import numberReducer from "./Reducers/numberReducer";
-import rand from './Functions/rand';
+import rand from "./Functions/randomNumber";
 
 function App() {
-    // const [color, setColor] = useState('skyblue');
+    const [colorName, setColorName] = useState("skyblue");
     const [color, dispatchColor] = useReducer(colorReducer, "skyblue");
     const [numb, dispachNumber] = useReducer(numberReducer, "0000");
+    const [colorInput, setColorInput] = useState("#F8dd00");
 
     // const goPink = () => {
     //   setColor('pink');
@@ -47,24 +48,74 @@ function App() {
     };
 
     const number2 = () => {
-      const action = {
-          type: 'do2',
-          payload: rand(0, 100)
-      }
-      dispachNumber(action);
-  }
+        const action = {
+            type: "do2",
+            payload: rand(0, 100),
+        };
+        dispachNumber(action);
+    };
+
+    const changeColor2 = () => {
+        const action = {
+            type: 'change_color_to',
+            payload: colorInput,
+        };
+        dispatchColor(action);
+    };
+
+    // useEffect(() => {
+    //       // setInterval(()=> dispachColor({type: 'change_color'}), 3000)
+    //   }, [])
 
     return (
         <div className="App">
             <header className="App-header">
                 <h1 style={{ backgroundColor: color }}>020 Lesson - Reducer</h1>
                 <span> {numb} </span>
+                <div className="mb-3">
+                    <button
+                        className="btn btn-outline-success"
+                        onClick={goPink}
+                    >
+                        Go pink
+                    </button>
+                    <button
+                        className="btn btn-outline-success ms-2"
+                        onClick={goYellow}
+                    >
+                        Go yellow
+                    </button>
+                    <button
+                        className="btn btn-outline-success ms-2"
+                        onClick={changeColor}
+                    >
+                        Change Color
+                    </button>
+                    <button
+                        className="btn btn-outline-success ms-2"
+                        onClick={randomNumber}
+                    >
+                        Random Number
+                    </button>
+                    <button
+                        className="btn btn-outline-success ms-2"
+                        onClick={number2}
+                    >
+                        Random Number
+                    </button>
+                </div>
                 <div>
-                    <button onClick={goPink}>Go pink</button>
-                    <button onClick={goYellow}>Go yellow</button>
-                    <button onClick={changeColor}>Change Color</button>
-                    <button onClick={randomNumber}>Random Number</button>
-                    <button onClick={number2}>Random Number</button>
+                    <input
+                        type="color"
+                        value={colorInput}
+                        onChange={(e) => setColorInput(e.target.value)}
+                    ></input>
+                    <button
+                        className="btn btn-outline-success ms-2"
+                        onClick={changeColor2}
+                    >
+                        Change Color Now
+                    </button>
                 </div>
             </header>
         </div>
