@@ -5,7 +5,7 @@ import { useReducer, useState, useEffect } from "react";
 import colorReducer from "./Reducers/colorReducer";
 import numberReducer from "./Reducers/numberReducer";
 import rand from "./Functions/randomNumber";
-import textReducer from "./Reducers/textReducer";
+import kvReducer from "./Reducers/kvReducer";
 
 function App() {
     const [colorName, setColorName] = useState("skyblue");
@@ -15,8 +15,8 @@ function App() {
     const [colorInput, setColorInput] = useState("#F8dd00");
 
     const [textInput, setTextInput] = useState("Labas");
-    // const [text, dispatchText] = useReducer(textReducer, "Hello");
 
+    const [kv, dispachKv] = useReducer(kvReducer, []);
 
     const goPink = () => {
         const action = {
@@ -59,19 +59,26 @@ function App() {
 
     const changeColor2 = () => {
         const action = {
-            type: 'change_color_to',
+            type: "change_color_to",
             payload: colorInput,
         };
         dispatchColor(action);
     };
 
     const changeText = () => {
-      const action = {
-          type: 'change_text',
-          payload: textInput,
-      };
-      dispachNumber(action);
-  };
+        const action = {
+            type: "change_text",
+            payload: textInput,
+        };
+        dispachNumber(action);
+    };
+
+    const goKv = () => {
+        const action = {
+            type: "gokv",
+        };
+        dispachKv(action);
+    };
 
     // useEffect(() => {
     //       // setInterval(()=> dispachColor({type: 'change_color'}), 3000)
@@ -139,6 +146,17 @@ function App() {
                     >
                         Change Text
                     </button>
+                </div>
+                <button
+                    className="btn btn-outline-success ms-2 mt-3"
+                    onClick={goKv}
+                >
+                    Go []
+                </button>
+                <div className="kvc">
+                    {kv.map((_, i) => (
+                        <div className="kv" key={i}></div>
+                    ))}
                 </div>
             </header>
         </div>

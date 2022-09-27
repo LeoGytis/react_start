@@ -1,6 +1,6 @@
 import rand from "../Functions/randomNumber";
 
-function colorReducer(state, action) {
+function numberReducer(state, action) {
     let newState;
     newState = state;
 
@@ -12,6 +12,9 @@ function colorReducer(state, action) {
         case "do2":
             newState = ("" + action.payload).padStart(4, 0);
             break;
+        case "change_text":
+            newState = action.payload;
+            break;
         default:
             newState = state;
     }
@@ -19,4 +22,4 @@ function colorReducer(state, action) {
     return newState;
 }
 
-export default colorReducer;
+export default numberReducer;
