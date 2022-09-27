@@ -50,6 +50,13 @@ function App() {
         listDispach(action);
     }
 
+    const add = () => {
+        const action = {
+            type: 'add'
+        }
+        listDispach(action);
+    }
+
     return (
         <div className="App">
             <header className="App-header">
@@ -100,6 +107,12 @@ function App() {
                     onClick={defaultSortList}
                 >
                     Default sorted list
+                </button>
+                <button
+                    className="btn btn-outline-success mt-2"
+                    onClick={add}
+                >
+                    Add [ ]
                 </button>
             </header>
         </div>

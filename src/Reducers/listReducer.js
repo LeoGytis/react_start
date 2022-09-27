@@ -50,6 +50,16 @@ function listReducer(state, action) {
             newState = [...state].sort((a, b) => a.row - b.row);
             break;
 
+        case "add":
+            newState = [...state, {
+                number: randomNumber(0, 1000),
+                color: randomColor(),
+                show: true,
+                row: state.length
+            }];
+
+            break;
+
         default:
             newState = [...state];
     }
