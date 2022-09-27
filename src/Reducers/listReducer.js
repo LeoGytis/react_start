@@ -17,6 +17,7 @@ function listReducer(state, action) {
                     number: randomNumber(0, 1000),
                     color: randomColor(),
                     show: true,
+                    row: i,
                 });
             }
             break;
@@ -27,7 +28,7 @@ function listReducer(state, action) {
             break;
 
         case "more500":
-            // newState = [...state].filter((a) => {return a.number > 500;});
+            // newState = [...state].filter((a) => {return a.number > 500;});  // netinka kad nes itrina lista
             newState = state.map((o) =>
                 o.number > 500 ? { ...o, show: true } : { ...o, show: false }
             );
@@ -39,6 +40,14 @@ function listReducer(state, action) {
             newState = state.map((o) =>
                 o.number < 400 ? { ...o, show: true } : { ...o, show: false }
             );
+            break;
+
+        case "filter_reset":
+            newState = state.map((o) => ({ ...o, show: true }));
+            break;
+
+        case "defaultSortList":
+            newState = [...state].sort((a, b) => a.row - b.row);
             break;
 
         default:
