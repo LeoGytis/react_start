@@ -5,36 +5,50 @@ import listReducer from "./Reducers/listReducer";
 import { useState } from "react";
 
 function App() {
-    const [list, listDispachd] = useReducer(listReducer, []);
+    const [list, listDispach] = useReducer(listReducer, []);
     // const [sortedList, getSortedList] = useState[list];
 
     const getNewList = () => {
         const action = {
             type: "new_list",
         };
-        listDispachd(action);
+        listDispach(action);
     };
 
     const sortList = () => {
         const action = {
             type: "sort",
         };
-        listDispachd(action);
+        listDispach(action);
     };
 
     const more500 = () => {
         const action = {
             type: "more500",
         };
-        listDispachd(action);
+        listDispach(action);
     };
 
     const less400 = () => {
         const action = {
             type: "less400",
         };
-        listDispachd(action);
+        listDispach(action);
     };
+
+    const filter_reset = () => {
+        const action = {
+            type: "filter_reset",
+        };
+        listDispach(action);
+    };
+
+    const defaultSortList = () => {
+        const action = {
+            type: 'defaultSortList'
+        }
+        listDispach(action);
+    }
 
     return (
         <div className="App">
@@ -74,6 +88,18 @@ function App() {
                     onClick={less400}
                 >
                     Less than 400
+                </button>
+                <button
+                    className="btn btn-outline-success mt-2"
+                    onClick={filter_reset}
+                >
+                    Filter reset
+                </button>
+                <button
+                    className="btn btn-outline-success mt-2"
+                    onClick={defaultSortList}
+                >
+                    Default sorted list
                 </button>
             </header>
         </div>
