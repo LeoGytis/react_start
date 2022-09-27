@@ -5,16 +5,18 @@ import { useReducer, useState, useEffect } from "react";
 import colorReducer from "./Reducers/colorReducer";
 import numberReducer from "./Reducers/numberReducer";
 import rand from "./Functions/randomNumber";
+import textReducer from "./Reducers/textReducer";
 
 function App() {
     const [colorName, setColorName] = useState("skyblue");
     const [color, dispatchColor] = useReducer(colorReducer, "skyblue");
     const [numb, dispachNumber] = useReducer(numberReducer, "0000");
+
     const [colorInput, setColorInput] = useState("#F8dd00");
 
-    // const goPink = () => {
-    //   setColor('pink');
-    // }
+    const [textInput, setTextInput] = useState("Labas");
+    // const [text, dispatchText] = useReducer(textReducer, "Hello");
+
 
     const goPink = () => {
         const action = {
@@ -62,6 +64,14 @@ function App() {
         };
         dispatchColor(action);
     };
+
+    const changeText = () => {
+      const action = {
+          type: 'change_text',
+          payload: textInput,
+      };
+      dispachNumber(action);
+  };
 
     // useEffect(() => {
     //       // setInterval(()=> dispachColor({type: 'change_color'}), 3000)
@@ -115,6 +125,19 @@ function App() {
                         onClick={changeColor2}
                     >
                         Change Color Now
+                    </button>
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        value={textInput}
+                        onChange={(e) => setTextInput(e.target.value)}
+                    ></input>
+                    <button
+                        className="btn btn-outline-success ms-2"
+                        onClick={changeText}
+                    >
+                        Change Text
                     </button>
                 </div>
             </header>
