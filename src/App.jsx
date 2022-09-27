@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function App() {
     const [list, listDispach] = useReducer(listReducer, []);
-    // const [sortedList, getSortedList] = useState[list];
+    const [number, setNumber] = useState('');
 
     const getNewList = () => {
         const action = {
@@ -57,6 +57,15 @@ function App() {
         listDispach(action);
     }
 
+    const hide = () => {
+        const action = {
+            type: 'hide',
+            payload: number
+        }
+        setNumber('');
+        listDispach(action);
+    }
+
     return (
         <div className="App">
             <header className="App-header">
@@ -79,7 +88,7 @@ function App() {
                             className="kv"
                             style={{ backgroundColor: a.color }}
                             key={i}
-                        >
+                        ><button onClick={hide(a.i)}></button>
                             {a.number}
                         </div> : null
                     )}

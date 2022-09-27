@@ -51,13 +51,21 @@ function listReducer(state, action) {
             break;
 
         case "add":
-            newState = [...state, {
-                number: randomNumber(0, 1000),
-                color: randomColor(),
-                show: true,
-                row: state.length
-            }];
+            newState = [
+                ...state,
+                {
+                    number: randomNumber(0, 1000),
+                    color: "skyblue",
+                    show: true,
+                    row: state.length,
+                },
+            ];
+            break;
 
+        case "hide":
+            newState = state.map((o) =>
+                o.number === action.payload ? { ...o, show: false } : { ...o }
+            );
             break;
 
         default:
