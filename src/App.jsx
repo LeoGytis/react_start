@@ -1,17 +1,34 @@
 import "./App.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import Books from "./Components/011/Books";
 import axios from "axios";
+import booksReducer from "./Reducers/booksReducer";
 
 function App() {
-    const [books, setBooks] = useState([]);
-    const [users, setUsers] = useState([]);
+    // const [books, setBooks] = useState([]);
+    const [books, dispachBooks] = useReducer(booksReducer, []);
+
+
+    const getNewList = (responseData) => {
+        const action = {
+            type: "new_list",
+            payload: responseData
+        };
+        dispachBooks(action);
+    };
 
     useEffect(() => {
         axios.get("https://in3.dev/knygos/").then((res) => {
-            setBooks(res.data);
+            // const action = {
+            //     type: "new_list",
+            //     payload: res.data
+            // };
+            // dispachBooks(action);
+            getNewList(res.data);
         });
     }, []);
+
+ 
 
 
     return (
