@@ -7,6 +7,7 @@ import booksReducer from "./Reducers/booksReducer";
 function App() {
     // const [books, setBooks] = useState([]);
     const [books, dispachBooks] = useReducer(booksReducer, []);
+    const [btypes, setBtypes] = useState([]);
 
     // const getNewList = (responseData) => {
     //     const action = {
@@ -57,8 +58,8 @@ function App() {
         dispachBooks(action);
     };
 
+    // Is naujo atsiuncia knygas is serverio
     const bookReload = () => {
-        // is naujo atsiuncia knygas is serverio
         const action = {
             type: "filterReset",
         };
@@ -66,6 +67,15 @@ function App() {
     };
 
     // sujungti knygu tipus is https://in3.dev/knygos/types/
+    useEffect(() => {
+        axios.get("https://in3.dev/knygos/types/").then((res) => {
+            const action = {
+                type: "get_types",
+                payload: res.data,
+            };
+            dispachBooks(action);
+        });
+    }, [btypes]);
 
     return (
         <div className="App">
@@ -96,6 +106,18 @@ function App() {
                     >
                         Filter reset
                     </button>
+                    <button
+                        className="btn btn-outline-success mt-2 ms-3"
+                        onClick={bookReload}
+                    >
+                        Book reload
+                    </button>
+                    <button
+                        className="btn btn-outline-success mt-2 ms-3"
+                        onClick={() => setBtypes([])}
+                    >
+                        Get book types
+                    </button>
                 </div>
                 {/* <div>
                     {
@@ -107,6 +129,7 @@ function App() {
                         b.show ? (
                             <div key={b.id}>
                                 {b.title} <i>{b.price} EUR</i>
+                                {b.typename}
                             </div>
                         ) : null
                     )}
