@@ -8,7 +8,6 @@ function App() {
     // const [books, setBooks] = useState([]);
     const [books, dispachBooks] = useReducer(booksReducer, []);
 
-
     // const getNewList = (responseData) => {
     //     const action = {
     //         type: "new_list",
@@ -21,7 +20,7 @@ function App() {
         axios.get("https://in3.dev/knygos/").then((res) => {
             const action = {
                 type: "new_list",
-                payload: res.data
+                payload: res.data,
             };
             console.log(res.data);
 
@@ -30,7 +29,7 @@ function App() {
         });
     }, []);
 
-       const sortList = () => {
+    const sortList = () => {
         const action = {
             type: "sort_list",
         };
@@ -43,14 +42,37 @@ function App() {
         };
         dispachBooks(action);
     };
- 
 
+    const more13 = () => {
+        const action = {
+            type: "more13",
+        };
+        dispachBooks(action);
+    };
+
+    const filterReset = () => {
+        const action = {
+            type: "freset",
+        };
+        dispachBooks(action);
+    };
+
+    const bookReload = () => {
+        // is naujo atsiuncia knygas is serverio
+        const action = {
+            type: "filterReset",
+        };
+        dispachBooks(action);
+    };
+
+    // sujungti knygu tipus is https://in3.dev/knygos/types/
 
     return (
         <div className="App">
             <header className="App-header">
                 <h1>022 Lesson</h1>
-                <button
+                <div>
+                    <button
                         className="btn btn-outline-success mt-2 ms-3"
                         onClick={sortList}
                     >
@@ -62,10 +84,32 @@ function App() {
                     >
                         Default sort list
                     </button>
-                <div>
+                    <button
+                        className="btn btn-outline-success mt-2 ms-3"
+                        onClick={more13}
+                    >
+                        More than 13eur
+                    </button>
+                    <button
+                        className="btn btn-outline-success mt-2 ms-3"
+                        onClick={filterReset}
+                    >
+                        Filter reset
+                    </button>
+                </div>
+                {/* <div>
                     {
-                       books.length ? books.map(b => <div key={b.id}>{b.title} <i>{b.price} EUR</i></div>) : <h2>Loading...</h2>
+                       books.length ? books.map((b, i) => <div key={b.id}>{b.title} <i>{b.price} EUR</i></div>) : <h2>Loading...</h2>
                     }
+                </div> */}
+                <div>
+                    {books.map((b, i) =>
+                        b.show ? (
+                            <div key={b.id}>
+                                {b.title} <i>{b.price} EUR</i>
+                            </div>
+                        ) : null
+                    )}
                 </div>
             </header>
         </div>
