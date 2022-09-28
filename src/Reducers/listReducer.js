@@ -62,11 +62,11 @@ function listReducer(state, action) {
             ];
             break;
 
-        case "hide":
-            newState = state.map((o) =>
-                o.number === action.payload ? { ...o, show: false } : { ...o }
-            );
-            break;
+        // case "hide":
+        //     newState = state.map((o) =>
+        //         o.number === action.payload ? { ...o, show: false } : { ...o }
+        //     );
+        //     break;
 
         default:
             newState = [...state];

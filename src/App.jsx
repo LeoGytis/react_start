@@ -58,12 +58,12 @@ function App() {
     }
 
     const hide = () => {
-        const action = {
-            type: 'hide',
-            payload: number
-        }
-        setNumber('');
-        listDispach(action);
+        // const action = {
+        //     type: 'hide',
+        //     payload: number
+        // }
+        // setNumber('');
+        // listDispach(action);
     }
 
     return (
@@ -83,12 +83,13 @@ function App() {
                     Sort the List
                 </button>
                 <div className="kvc">
+                {/* <button onClick={hide}></button> */}
                     {list.map((a, i) => a.show ? 
                         <div
                             className="kv"
                             style={{ backgroundColor: a.color }}
                             key={i}
-                        ><button onClick={hide(a.i)}></button>
+                        >
                             {a.number}
                         </div> : null
                     )}
