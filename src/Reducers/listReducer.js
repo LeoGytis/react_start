@@ -62,10 +62,21 @@ function listReducer(state, action) {
             ];
             break;
 
+        case "range":
+            console.log("go", action.payload);
+            newState = state.map((o) =>
+                o.number > action.payload
+                    ? { ...o, show: true }
+                    : { ...o, show: false }
+            );
+            break;
+
         case "hide":
             // action.payload*1 - string to number conversipon
             newState = state.map((o) =>
-                o.number === action.payload*1 ? { ...o, show: false } : { ...o }
+                o.number === action.payload * 1
+                    ? { ...o, show: false }
+                    : { ...o }
             );
             break;
 

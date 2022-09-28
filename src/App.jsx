@@ -1,12 +1,13 @@
 import "./App.scss";
 import "./crud.scss";
-import { useReducer } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import listReducer from "./Reducers/listReducer";
-import { useState } from "react";
 
 function App() {
     const [list, listDispach] = useReducer(listReducer, []);
     const [number, setNumber] = useState("");
+    const [range, setRange] = useState("0");
+    const doRange = useRef(true);
 
     const getNewList = () => {
         const action = {
@@ -74,6 +75,20 @@ function App() {
         listDispach(action);
     };
 
+    useEffect(() => {
+        if (!doRange.current) {
+            return;
+        }
+        doRange.current = false;
+        setTimeout(() => (doRange.current = true), 20);
+
+        const action = {
+            type: "range",
+            payload: range,
+        };
+        listDispach(action);
+    }, [range]);
+
     return (
         <div className="App">
             <header className="App-header">
@@ -139,6 +154,16 @@ function App() {
                     >
                         Hide!
                     </button>
+                </div>
+                <div className="form-group mt-3">
+                    <h2>{range}</h2>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1000"
+                        onChange={(e) => setRange(e.target.value)}
+                        value={range}
+                    ></input>
                 </div>
                 <div className="kvc mt-3">
                     {list.map((a, i) =>
