@@ -8,6 +8,7 @@ function booksReducer(state, action) {
                 ...b,
                 show: true,
                 row: i,
+                typename: "nera",
             }));
             break;
 
@@ -37,6 +38,17 @@ function booksReducer(state, action) {
 
         case "freset":
             newState = state.map((o) => ({ ...o, show: true }));
+            break;
+
+        case "get_types":
+            console.log("Payload");
+            console.log(action.payload);
+            // newState = state.map((o) => ({ ...o, show: true }));
+            newState = state.map((o) =>
+                o.type === action.payload.id
+                    ? { ...o, typename: action.payload.title }
+                    : { ...o, typename: "jau_yra" }
+            );
             break;
 
         default:
