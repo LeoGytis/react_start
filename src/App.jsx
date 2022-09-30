@@ -61,7 +61,7 @@ function App() {
     // Is naujo atsiuncia knygas is serverio
     const bookReload = () => {
         const action = {
-            type: "filterReset",
+            type: "freset",
         };
         dispachBooks(action);
     };
