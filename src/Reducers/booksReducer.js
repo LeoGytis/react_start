@@ -1,3 +1,5 @@
+import axios from "axios";
+
 function booksReducer(state, action) {
     let newState;
     // newState = state;
@@ -40,6 +42,22 @@ function booksReducer(state, action) {
             newState = state.map((o) => ({ ...o, show: true }));
             break;
 
+        case "book_reload":
+            // newState = action.payload.map((o) => ({ ...o, show: true }));
+            axios.get("https://in3.dev/knygos/").then((res) => {
+                const newData = res.data;
+                newState = newData.map((b, i) => ({
+                    ...b,
+                    show: true,
+                    row: i,
+                }));
+                console.log('veikia');
+                // console.log(res.data);
+            });
+            console.log('veikia');
+
+
+            break;
         // case "get_types":
         //     console.log("Payload");
         //     console.log(action.payload);
@@ -51,14 +69,14 @@ function booksReducer(state, action) {
         //     );
         //     break;
 
-            case "get_types":
-                newState = action.payload.map((b, i) => ({
-                    ...b,
-                    show: true,
-                    row: i,
-                    typename: "nera",
-                }));
-                break;
+        case "get_types":
+            newState = action.payload.map((b, i) => ({
+                ...b,
+                show: true,
+                row: i,
+                typename: "nera",
+            }));
+            break;
 
         default:
             newState = [...state];
