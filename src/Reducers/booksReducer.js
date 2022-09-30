@@ -42,21 +42,28 @@ function booksReducer(state, action) {
             newState = state.map((o) => ({ ...o, show: true }));
             break;
 
-        case "book_reload":
-            // axios.get("https://in3.dev/knygos/").then((res) => {
-            //     const newData = res.data;
-            //     newState = newData.map((b, i) => ({
-            //         ...b,
-            //         show: true,
-            //         row: i,
-            //     }));
-            //     console.log('veikia');
-            //     console.log(res.data);
-            // });
+        case "book_rel":
+            axios.get("https://in3.dev/knygos/").then((res) => {
+                
+            
+            const newData = res.data;
+                newState = newData.map((b, i) => ({
+                    ...b,
+                    show: true,
+                    row: i,
+                }));
+
+
+                // console.log(newData);
+                // console.log('veikia-------');
+                // console.log(res.data);
+            // setTimeout(() => {  console.log(res.data); }, 5000);
+
+            });
             console.log('veikia cia');
-
-
             break;
+
+
         // case "get_types":
         //     console.log("Payload");
         //     console.log(action.payload);

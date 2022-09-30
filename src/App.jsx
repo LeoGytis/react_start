@@ -23,8 +23,6 @@ function App() {
                 type: "new_list",
                 payload: res.data,
             };
-            console.log(res.data);
-
             dispachBooks(action);
             // getNewList(res.data);
         });
@@ -59,9 +57,11 @@ function App() {
     };
 
     // Is naujo atsiuncia knygas is serverio
+    //---gavimas uzdelsto veikimo--- !!!
+
     const bookReload = () => {
         const action = {
-            type: "book_reload",
+            type: "book_rel",
         };
         dispachBooks(action);
     };
